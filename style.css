@@ -1,0 +1,250 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0c111d;
+  font-family: Arial, sans-serif;
+  color: white;
+  transition: background 0.8s ease;
+}
+
+.container {
+  width: 90%;
+  max-width: 500px;
+  height: 580px;
+  padding: 25px;
+  text-align: center;
+  background: #151e2d;
+  border: 1px solid #29364a;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: background 0.8s ease;
+}
+
+h2 {
+  display: inline-block;
+  padding: 10px 18px;
+  font-size: 18px;
+  background: #263449;
+  border-radius: 5px;
+}
+
+p {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #aab5c5;
+}
+
+.light-area {
+  position: relative;
+  height: 330px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 65px;
+}
+
+/* Bulb */
+
+.bulb {
+  position: relative;
+  z-index: 2;
+  width: 48px;
+  height: 65px;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+.bulb:hover {
+  transform: scale(1.06);
+}
+
+.glass {
+  position: absolute;
+  top: 0;
+  left: 4px;
+  width: 40px;
+  height: 46px;
+  border: 1.5px solid #aab6c4;
+  border-radius: 50% 50% 43% 43%;
+  background: #253044;
+  box-shadow: inset 0 0 10px #ffffff0a;
+  transition: all 0.5s ease;
+}
+
+.filament {
+  position: absolute;
+  z-index: 2;
+  top: 19px;
+  left: 17px;
+  width: 14px;
+  height: 13px;
+  border: 1.5px solid #8795a6;
+  border-bottom: none;
+  border-radius: 50% 50% 0 0;
+  transition: all 0.5s ease;
+}
+
+.bulb-base {
+  position: absolute;
+  top: 44px;
+  left: 13px;
+  width: 22px;
+  height: 24px;
+  background: #8b95a2;
+  border: 1px solid #d0d4d9;
+  border-radius: 2px 2px 5px 5px;
+  overflow: hidden;
+}
+
+.bulb-base span {
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin-top: 5px;
+  background: #414b59;
+}
+
+/* Wire below the bulb */
+
+.wire {
+  width: 2px;
+  height: 70px;
+  margin-top: 0;
+  background: #8490a0;
+  transform-origin: top;
+  transition: height 0.6s ease;
+}
+
+/* Light glow */
+
+.light-glow {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: #ffe6a1;
+  opacity: 0;
+  filter: blur(65px);
+  transform: translateX(-50%) scale(0.4);
+  transition: all 0.7s ease;
+  pointer-events: none;
+}
+
+/* Light ON */
+
+body.on {
+  background: #d4c39e;
+}
+
+body.on .container {
+  background: #bba77e;
+  border-color: #e8d7ae;
+  box-shadow: 0 0 50px #fff0b3;
+}
+
+body.on h2 {
+  color: #39404a;
+  background: #f4e8ca;
+}
+
+body.on p {
+  color: #4c4638;
+}
+
+body.on .glass {
+  background: #fff0b3;
+  border-color: #fff9df;
+  box-shadow:
+    0 0 12px #fff5c6,
+    0 0 35px #ffe49b,
+    0 0 70px #ffd779;
+  animation: flicker 3s infinite;
+}
+
+body.on .filament {
+  border-color: #fff9d8;
+  box-shadow: 0 0 10px #fff2a8;
+}
+
+body.on .bulb-base {
+  background: #73716a;
+}
+
+body.on .light-glow {
+  opacity: 0.9;
+  transform: translateX(-50%) scale(1);
+  animation: glow 2s infinite alternate;
+}
+
+/* Button */
+
+button {
+  margin-top: 5px;
+  padding: 12px 22px;
+  color: white;
+  background: #27364b;
+  border: 1px solid #53647a;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #394b63;
+  transform: translateY(-2px);
+}
+
+body.on button {
+  color: #302819;
+  background: #f8e5b5;
+  border-color: #fff2d0;
+}
+
+/* Animations */
+
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 100% {
+    opacity: 1;
+  }
+
+  20%, 24%, 55% {
+    opacity: 0.75;
+  }
+}
+
+@keyframes glow {
+  from {
+    opacity: 0.6;
+    transform: translateX(-50%) scale(0.85);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.1);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    height: 550px;
+    padding: 20px 12px;
+  }
+
+  h2 {
+    font-size: 16px;
+  }
+
+  .light-area {
+    height: 310px;
+  }
+}
